@@ -6,7 +6,7 @@ A Docker-based LaTeX distribution with support for BibLaTeX.
 
 This image is designed to be used with the [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) extension for Visual Studio Code. To use it, change the `"latex-workshop.docker.image.latex"` setting to `"gokhlayeh/latex"`. You can do so via the `vscode` _Settings_ menu or simply by copy&pasting the following lines to your `.vscode/settings.json`:
 
-```json
+```jsonc
 {
     /* more settings go here */
     "latex-workshop.docker.enabled": true,
