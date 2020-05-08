@@ -3,8 +3,18 @@ FROM alpine:edge
 LABEL description="LaTeX distribution with support for BibLaTeX"
 LABEL maintainer="gokhlayeh"
 
-RUN apk add --no-cache \
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+    && apk add --no-cache \
     biber \
     biblatex \
     make \
+    perl-eval-closure \
+    perl-file-homedir \
+    perl-log-dispatch \
+    perl-log-log4perl \
+    perl-namespace-autoclean \
+    perl-params-validationcompiler \
+    perl-specio \
+    perl-unicode-linebreak \
+    perl-yaml-tiny \
     texlive-full
