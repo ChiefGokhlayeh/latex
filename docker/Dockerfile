@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-LABEL description="LaTeX distribution with support for BibLaTeX"
+LABEL description="LaTeX distribution with support for BibLaTeX and PythonTeX"
 LABEL maintainer="gokhlayeh"
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
