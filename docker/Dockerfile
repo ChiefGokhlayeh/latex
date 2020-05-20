@@ -18,4 +18,8 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     perl-specio \
     perl-unicode-linebreak \
     perl-yaml-tiny \
+    py3-pygments \
+    python3 \
     texlive-full
+
+RUN ln -s python3 /usr/bin/python
