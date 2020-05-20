@@ -8,6 +8,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     biber \
     biblatex \
     make \
+    ncurses \
     perl-eval-closure \
     perl-file-homedir \
     perl-log-dispatch \
