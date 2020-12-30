@@ -17,24 +17,15 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
     make \
     ncurses \
     openjdk14-jre \
-    perl-eval-closure \
-    perl-file-homedir \
-    perl-log-dispatch \
-    perl-log-log4perl \
-    perl-namespace-autoclean \
-    perl-params-validationcompiler \
-    perl-specio \
-    perl-unicode-linebreak \
-    perl-yaml-tiny \
     py3-pygments \
     python3 \
     texlive-full \
     ttf-droid \
     ttf-droid-nonlatin \
     && mkdir -p "$(dirname ${PLANTUML_JAR})" \
-    && curl -L https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o "${PLANTUML_JAR}" \
+    && curl -fsSL https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o "${PLANTUML_JAR}" \
     && echo "PLANTUML_JAR=${PLANTUML_JAR}" >> /etc/environment \
-    && apk del curl
+    && apk del --no-cache curl
 
 RUN ln -s python3 /usr/bin/python
 COPY plantuml /usr/bin/plantuml
