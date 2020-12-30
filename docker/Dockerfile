@@ -5,7 +5,7 @@ LABEL version="v2"
 LABEL description="LaTeX distribution with support for BibLaTeX and PythonTeX"
 LABEL maintainer="gokhlayeh"
 
-ENV PLANTUML_VERSION 1.2020.10
+ENV PLANTUML_VERSION 1.2020.26
 ENV PLANTUML_JAR /usr/share/java/plantuml/plantuml.jar
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
