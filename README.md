@@ -1,4 +1,4 @@
-# latex [![Docker Hub Project](https://img.shields.io/docker/automated/gokhlayeh/latex?label=type)](https://hub.docker.com/repository/docker/gokhlayeh/latex) [![pre-commit Build](https://github.com/ChiefGokhlayeh/latex/workflows/pre-commit/badge.svg)](https://github.com/ChiefGokhlayeh/latex/actions?query=workflow%3Apre-commit) [![push-image Build](https://github.com/ChiefGokhlayeh/latex/workflows/push-image/badge.svg)](https://github.com/ChiefGokhlayeh/latex/actions?query=workflow%3Apush-image)
+# latex [![gokhlayeh/latex](https://img.shields.io/badge/Docker%20Hub-gokhlayeh%2Flatex-blue)](https://hub.docker.com/r/gokhlayeh/latex) [![pre-commit Build](https://github.com/ChiefGokhlayeh/latex/workflows/pre-commit/badge.svg)](https://github.com/ChiefGokhlayeh/latex/actions?query=workflow%3Apre-commit) [![push-image Build](https://github.com/ChiefGokhlayeh/latex/workflows/push-image/badge.svg)](https://github.com/ChiefGokhlayeh/latex/actions?query=workflow%3Apush-image)
 
 A Docker-based LaTeX distribution with support for BibLaTeX and PythonTeX.
 
