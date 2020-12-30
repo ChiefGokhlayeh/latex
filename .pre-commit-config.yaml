@@ -1,0 +1,37 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v3.3.0
+      hooks:
+          - id: check-added-large-files
+          - id: check-executables-have-shebangs
+          - id: check-json
+          - id: check-merge-conflict
+          - id: check-yaml
+          - id: detect-private-key
+          - id: end-of-file-fixer
+          - id: mixed-line-ending
+          - id: trailing-whitespace
+    - repo: https://github.com/igorshubovych/markdownlint-cli
+      rev: v0.26.0
+      hooks:
+          - id: markdownlint
+    - repo: https://github.com/prettier/pre-commit
+      rev: main
+      hooks:
+          - id: prettier
+            args:
+                - --config-precedence=file-override
+    - repo: https://github.com/Lucas-C/pre-commit-hooks-nodejs
+      rev: v1.1.1
+      hooks:
+          - id: dockerfile_lint
+    - repo: https://github.com/shellcheck-py/shellcheck-py
+      rev: v0.7.1.1
+      hooks:
+          - id: shellcheck
+    - repo: meta
+      hooks:
+          - id: check-hooks-apply
+          - id: check-useless-excludes

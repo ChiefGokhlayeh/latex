@@ -1,5 +1,7 @@
 FROM alpine:edge
 
+LABEL name="Gokhlayeh/LaTeX"
+LABEL version="v2"
 LABEL description="LaTeX distribution with support for BibLaTeX and PythonTeX"
 LABEL maintainer="gokhlayeh"
 
