@@ -1,0 +1,16 @@
+\documentclass{article}
+
+\usepackage{pythontex}
+\setpythontexoutputdir{.} % This is the important bit, when building into separate build directory!
+
+\newcommand{\pymultiply}[2]{\py{#1*#2}}
+
+\begin{document}
+
+\begin{pycode}
+print("Python says Hello!")
+\end{pycode}
+
+$8 \times 256 = \pymultiply{8}{256}$
+
+\end{document}
