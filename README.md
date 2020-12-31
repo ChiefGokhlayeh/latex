@@ -35,8 +35,9 @@ RUN apk add --no-cache \
     && \
     python3 -m pip install --no-cache-dir \
     numpy
-
 ```
+
+For an example on how to use the included PythonTeX in your LaTeX document, refer to the contents of [`test/`](test) directory.
 
 If you're using LaTeX Workshop, don't forget to tag your image and update `"latex-workshop.docker.image.latex": "..."` accordingly.
 
