@@ -44,7 +44,7 @@ docker run \
   -t \
   --rm \
   -v "$(pwd):/workspace" \
-  -w '/workspace' \
+  -w '/workspace/pythontex' \
   gokhlayeh/latex \
   latexmk \
   -outdir=build \
