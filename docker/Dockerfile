@@ -15,6 +15,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >>/etc/apk/reposito
     curl \
     ghostscript \
     graphviz \
+    inkscape \
     make \
     ncurses \
     openjdk11-jre \

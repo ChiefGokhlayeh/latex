@@ -46,3 +46,5 @@ jobs:
         run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/plantuml ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=. -lualatex main.tex
       - name: Compile PythonTeX test document
         run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/pythontex ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf main.tex
+      - name: Compile SVG test document
+        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/svg ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf main.tex
