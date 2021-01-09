@@ -18,6 +18,9 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >>/etc/apk/reposito
     make \
     ncurses \
     openjdk11-jre \
+    perl-file-homedir \
+    perl-log-dispatch \
+    perl-yaml-tiny \
     py3-pygments \
     python3 \
     texlive-full \
