@@ -42,9 +42,9 @@ main.pdf
 ## Build tool auxiliary files:
 *.fdb_latexmk
 *.synctex
-*.synctex(busy)
+#*.synctex(busy)
 *.synctex.gz
-*.synctex.gz(busy)
+#*.synctex.gz(busy)
 *.pdfsync
 
 ## Build tool directories for auxiliary files

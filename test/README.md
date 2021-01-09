@@ -42,8 +42,8 @@ docker run \
     -v "$(pwd):/workspace" \
     -w '/workspace' \
     gokhlayeh/latex \
-        latexmk \
-            -outdir=build \
-            -pdf \
-            main.tex
+    latexmk \
+    -outdir=build \
+    -pdf \
+    main.tex
 ```
