@@ -46,6 +46,7 @@ main.pdf
 *.synctex.gz
 #*.synctex.gz(busy)
 *.pdfsync
+__latexindent_temp.tex
 
 ## Build tool directories for auxiliary files
 # latexrun

@@ -8,9 +8,9 @@ This image is designed to be used with the [LaTeX Workshop](https://marketplace.
 
 ```jsonc
 {
-    /* more settings go here */
-    "latex-workshop.docker.enabled": true,
-    "latex-workshop.docker.image.latex": "gokhlayeh/latex"
+  /* more settings go here */
+  "latex-workshop.docker.enabled": true,
+  "latex-workshop.docker.image.latex": "gokhlayeh/latex"
 }
 ```
 
