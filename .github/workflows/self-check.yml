@@ -42,5 +42,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing
       - name: Compile EPS test document
         run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/eps ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf main.tex
+      - name: Compile PlantUML test document
+        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/plantuml ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=. -lualatex main.tex
       - name: Compile PythonTeX test document
         run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/pythontex ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf main.tex
