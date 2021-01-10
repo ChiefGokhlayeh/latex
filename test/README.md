@@ -1,4 +1,4 @@
-# Test and Examples
+# Tests and Examples
 
 The included files in this directory serve as test input and usage example for users of [`gokhlayeh/latex`](https://hub.docker.com/r/gokhlayeh/latex).
 
