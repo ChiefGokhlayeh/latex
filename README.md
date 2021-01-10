@@ -21,27 +21,14 @@ The Docker image ships with a basic install of Python 3.x to support [PythonTeX]
 ```Dockerfile
 FROM gokhlayeh/latex:latest
 
-# Using Alpine's own package manager 'apk':
-RUN apk add --no-cache \
-    py3-numpy
-
-# Or alternatively, fist install 'pip' and use that.
-# NOTE: build-base and python3-dev are needed in this example to install and
-# compile numpy. Other packages may not require such an elaborate setup.
-RUN apk add --no-cache \
-    build-base \
-    py3-pip \
-    python3-dev \
-    && \
-    python3 -m pip install --no-cache-dir \
-    numpy
+# Using Arch Linux's inofficial AUR package manager 'yay':
+RUN yay -Sy --noconfirm --needed \
+    python-numpy
 ```
 
 For an example on how to use the included PythonTeX in your LaTeX document, refer to the contents of [`test/`](test) directory.
 
 If you're using LaTeX Workshop, don't forget to tag your image and update `"latex-workshop.docker.image.latex": "..."` accordingly.
-
-Note that the base-image currently symlinks `/usr/bin/python` to `python3`, so that PythonTeX may use Python 3.x by default. This could cause issues when installing Python 2.x packages.
 
 ## Pull the Image Manually
 

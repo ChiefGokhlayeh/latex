@@ -1,37 +1,45 @@
-FROM alpine:edge
+FROM archlinux:base-devel
 
 LABEL name="Gokhlayeh/LaTeX"
 LABEL version="v3"
 LABEL description="LaTeX distribution with support for BibLaTeX and PythonTeX"
 LABEL maintainer="gokhlayeh"
 
-ENV PLANTUML_VERSION 1.2020.26
+ARG YAY_REPO=https://aur.archlinux.org/yay-git.git
+ARG USER_NAME=latex
+ARG USER_GROUP=latex
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+RUN groupadd -g "${USER_GID}" "${USER_NAME}" \
+  && useradd -m -g "${USER_GID}" -u "${USER_UID}" "${USER_NAME}" \
+  && echo "${USER_NAME} ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
+
+RUN pacman -Sy --noconfirm --needed \
+  git \
+  && git clone "${YAY_REPO}" /tmp/yay \
+  && chgrp "${USER_NAME}" /tmp/yay \
+  && chmod g+ws /tmp/yay \
+  && setfacl -m u::rwx,g::rwx /tmp/yay \
+  && setfacl -d --set u::rwx,g::rwx,o::- /tmp/yay \
+  && cd /tmp/yay \
+  && sudo -u "${USER_NAME}" makepkg -sicfC --noconfirm --needed \
+  && pacman -Scc --noconfirm
+
+RUN sudo -u "${USER_NAME}" yay -Sy --noconfirm --needed --repo \
+  biber \
+  ghostscript \
+  inkscape \
+  libxml2 \
+  plantuml \
+  python \
+  python-pygments \
+  texlive-lang \
+  texlive-most \
+  && sudo -u "${USER_NAME}" yay -Scc --noconfirm
+
+RUN sudo -u "${USER_NAME}" yay -Sy --noconfirm --needed --aur \
+  texlive-latexindent-meta \
+  && sudo -u "${USER_NAME}" yay -Scc --noconfirm
+
 ENV PLANTUML_JAR /usr/share/java/plantuml/plantuml.jar
-
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >>/etc/apk/repositories \
-  && apk add --no-cache \
-    biber \
-    biblatex \
-    curl \
-    ghostscript \
-    graphviz \
-    inkscape \
-    make \
-    ncurses \
-    openjdk11-jre \
-    perl-file-homedir \
-    perl-log-dispatch \
-    perl-yaml-tiny \
-    py3-pygments \
-    python3 \
-    texlive-full \
-    ttf-droid \
-    ttf-droid-nonlatin \
-  && mkdir -p "$(dirname ${PLANTUML_JAR})" \
-  && curl -fsSL https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o "${PLANTUML_JAR}" \
-  && echo "PLANTUML_JAR=${PLANTUML_JAR}" >>/etc/environment \
-  && apk del --no-cache curl
-
-RUN ln -s python3 /usr/bin/python
-COPY plantuml /usr/bin/plantuml
-RUN chmod +x /usr/bin/plantuml
