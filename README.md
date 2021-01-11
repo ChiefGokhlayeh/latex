@@ -21,12 +21,11 @@ The Docker image ships with a basic install of Python 3.x to support [PythonTeX]
 ```Dockerfile
 FROM gokhlayeh/latex:latest
 
-# Using Arch Linux's inofficial AUR package manager 'yay':
-RUN yay -Sy --noconfirm --needed \
-    python-numpy
+RUN dnf install -y --setopt=install_weak_deps=False \
+    python3-numpy
 ```
 
-For an example on how to use the included PythonTeX in your LaTeX document, refer to the contents of [`test/`](test) directory.
+For examples on how to use the included PythonTeX in your LaTeX document and other features of this image, refer to the contents of [`test/`](test) directory.
 
 If you're using LaTeX Workshop, don't forget to tag your image and update `"latex-workshop.docker.image.latex": "..."` accordingly.
 
