@@ -41,12 +41,12 @@ jobs:
           push: false
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing
       - name: Compile EPS test document
-        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/eps ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf main.tex
+        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/eps ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
       - name: Compile FontAwesome5 test document
-        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/fontawesome5 ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf main.tex
+        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/fontawesome5 ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
       - name: Compile PlantUML test document
-        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/plantuml ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=. -lualatex main.tex
+        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/plantuml ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=. -lualatex -interaction=nonstopmode -file-line-error main.tex
       - name: Compile PythonTeX test document
-        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/pythontex ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf main.tex
+        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/pythontex ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
       - name: Compile SVG test document
-        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/svg ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf main.tex
+        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/svg ${{ secrets.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
