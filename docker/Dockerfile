@@ -14,10 +14,7 @@ RUN dnf install -y --setopt=install_weak_deps=False \
   latexmk \
   make \
   python3 \
-  texlive-collection-bibtexextra \
-  texlive-collection-fontsextra \
-  texlive-collection-latexextra \
-  texlive-scheme-medium \
+  texlive-scheme-full \
   && dnf clean all
 
 RUN mkdir -p "$(dirname ${PLANTUML_JAR})" \
