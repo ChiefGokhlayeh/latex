@@ -5,7 +5,7 @@ LABEL version="v3"
 LABEL description="LaTeX distribution with support for BibLaTeX and PythonTeX"
 LABEL maintainer="gokhlayeh"
 
-ARG PLANTUML_VERSION=1.2020.26
+ARG PLANTUML_VERSION=1.2021.0
 ENV PLANTUML_JAR /usr/share/java/plantuml/plantuml.jar
 
 RUN dnf install -y --setopt=install_weak_deps=False \
