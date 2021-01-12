@@ -15,6 +15,7 @@ RUN dnf install -y --setopt=install_weak_deps=False \
   make \
   python3 \
   texlive-collection-bibtexextra \
+  texlive-collection-fontsextra \
   texlive-collection-latexextra \
   texlive-scheme-medium \
   && dnf clean all
