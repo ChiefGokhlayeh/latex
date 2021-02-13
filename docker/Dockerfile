@@ -9,6 +9,7 @@ ARG PLANTUML_VERSION=1.2021.1
 ENV PLANTUML_JAR /usr/share/java/plantuml/plantuml.jar
 
 RUN dnf install -y --setopt=install_weak_deps=False \
+  graphviz \
   inkscape \
   java-latest-openjdk \
   latexmk \
