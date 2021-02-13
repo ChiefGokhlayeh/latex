@@ -1,11 +1,11 @@
 FROM fedora:33
 
 LABEL name="Gokhlayeh/LaTeX"
-LABEL version="v4"
+LABEL version="v5"
 LABEL description="LaTeX distribution with support for BibLaTeX and PythonTeX"
 LABEL maintainer="gokhlayeh"
 
-ARG PLANTUML_VERSION=1.2021.0
+ARG PLANTUML_VERSION=1.2021.1
 ENV PLANTUML_JAR /usr/share/java/plantuml/plantuml.jar
 
 RUN dnf install -y --setopt=install_weak_deps=False \
@@ -18,5 +18,5 @@ RUN dnf install -y --setopt=install_weak_deps=False \
   && dnf clean all
 
 RUN mkdir -p "$(dirname ${PLANTUML_JAR})" \
-  && curl -fsSL https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o "${PLANTUML_JAR}" \
+  && curl -SL https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o "${PLANTUML_JAR}" \
   && echo "PLANTUML_JAR=${PLANTUML_JAR}" >>/etc/environment
