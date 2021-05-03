@@ -1,15 +1,17 @@
 name: Push Image
 
 on:
-  workflow_run:
-    workflows: ['Build and Test']
+  push:
+    branches:
+      - master
+  release:
     types:
-      - completed
+      - published
+      - edited
 
 jobs:
   push-image:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     env:
       buildx_platforms: linux/amd64
     steps:
