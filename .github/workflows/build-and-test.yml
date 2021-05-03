@@ -1,0 +1,45 @@
+name: Build and Test
+
+on: [push, pull_request]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    env:
+      DOCKERHUB_USERNAME: gokhlayeh
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        env:
+          cache-name: docker-cache
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./docker/Dockerfile') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Build testing image
+        uses: docker/build-push-action@v2
+        with:
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          context: ./docker
+          file: ./docker/Dockerfile
+          load: true
+          push: false
+          tags: ${{ env.DOCKERHUB_USERNAME }}/latex:testing
+      - name: Compile EPS test document
+        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/eps ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
+      - name: Compile FontAwesome5 test document
+        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/fontawesome5 ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
+      - name: Compile PlantUML test document
+        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/plantuml ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=. -lualatex -interaction=nonstopmode -file-line-error main.tex
+      - name: Compile PythonTeX test document
+        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/pythontex ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
+      - name: Compile SVG test document
+        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/svg ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
