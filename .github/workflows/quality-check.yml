@@ -11,4 +11,4 @@ jobs:
       - name: Set up Python environment
         uses: actions/setup-python@v2
       - name: Run pre-commit checks
-        uses: pre-commit/action@v2.0.0
+        uses: pre-commit/action@v2.0.3
