@@ -4,7 +4,6 @@
 
 [![Code Quality](https://github.com/ChiefGokhlayeh/latex/actions/workflows/quality-check.yml/badge.svg)](https://github.com/ChiefGokhlayeh/latex/actions/workflows/quality-check.yml)
 [![Build and Test](https://github.com/ChiefGokhlayeh/latex/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/ChiefGokhlayeh/latex/actions/workflows/build-and-test.yml)
-[![Push Image](https://github.com/ChiefGokhlayeh/latex/actions/workflows/push-image.yml/badge.svg)](https://github.com/ChiefGokhlayeh/latex/actions/workflows/push-image.yml)
 
 A Docker-based LaTeX distribution with support for BibLaTeX and PythonTeX.
 

@@ -1,15 +1,28 @@
 name: Build and Test
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  release:
+    types:
+      - published
+      - edited
 
 jobs:
-  run-tests:
+  build-test-push:
     runs-on: ubuntu-latest
     env:
-      DOCKERHUB_USERNAME: gokhlayeh
+      DOCKERHUB_USERNAME: gokhlayeh # used in non trustworthy section of the job
+      buildx_platforms: linux/amd64
     steps:
+      # preparation
+      #
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          platforms: all
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Cache Docker layers
@@ -23,6 +36,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      #
+      # build unstable image used for test suite
+      #
       - name: Build testing image
         uses: docker/build-push-action@v2
         with:
@@ -33,6 +49,9 @@ jobs:
           load: true
           push: false
           tags: ${{ env.DOCKERHUB_USERNAME }}/latex:testing
+      #
+      # run test suite
+      #
       - name: Compile EPS test document
         run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/eps ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
       - name: Compile FontAwesome5 test document
@@ -43,3 +62,47 @@ jobs:
         run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/pythontex ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
       - name: Compile SVG test document
         run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/svg ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
+      #
+      # push image (if trusted commit)
+      #
+      - name: Login to DockerHub
+        if: ${{ github.event_name == 'release' || (github.event_name == 'push' && github.ref == 'refs/heads/master') }}
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push unstable
+        if: ${{ github.event_name == 'release' || (github.event_name == 'push' && github.ref == 'refs/heads/master') }}
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./docker
+          file: ./docker/Dockerfile
+          platforms: ${{ env.buildx_platforms }}
+          load: false
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/latex:unstable
+      - name: Determine release tag name
+        if: ${{ github.event_name == 'release' }}
+        id: vars
+        run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+      - name: Build and push release
+        if: ${{ github.event_name == 'release' }}
+        uses: docker/build-push-action@v2
+        with:
+          context: ./docker
+          file: ./docker/Dockerfile
+          platforms: ${{ env.buildx_platforms }}
+          load: false
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/latex:${{steps.vars.outputs.tag}},
+            ${{ secrets.DOCKERHUB_USERNAME }}/latex:latest
+      - name: Update Docker Hub description
+        if: ${{ github.event_name == 'release' || (github.event_name == 'push' && github.ref == 'refs/heads/master') }}
+        uses: peter-evans/dockerhub-description@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          readme-filepath: README.md
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/latex
