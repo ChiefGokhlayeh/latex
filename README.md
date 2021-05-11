@@ -1,8 +1,7 @@
 # latex
 
 [![gokhlayeh/latex](https://img.shields.io/badge/Docker%20Hub-gokhlayeh%2Flatex-blue)](https://hub.docker.com/r/gokhlayeh/latex)
-
-[![Code Quality](https://github.com/ChiefGokhlayeh/latex/actions/workflows/quality-check.yml/badge.svg)](https://github.com/ChiefGokhlayeh/latex/actions/workflows/quality-check.yml)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/ChiefGokhlayeh/latex/master.svg)](https://results.pre-commit.ci/latest/github/ChiefGokhlayeh/latex/master)
 [![Build and Test](https://github.com/ChiefGokhlayeh/latex/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/ChiefGokhlayeh/latex/actions/workflows/build-and-test.yml)
 
 A Docker-based LaTeX distribution with support for BibLaTeX and PythonTeX.
