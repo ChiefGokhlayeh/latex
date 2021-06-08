@@ -17,6 +17,10 @@ jobs:
     steps:
       # preparation
       #
+      - name: Remove unused packages from disk
+        run: |
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /usr/share/dotnet
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Set up QEMU
