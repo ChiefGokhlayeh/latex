@@ -20,4 +20,4 @@ RUN dnf install -y --setopt=install_weak_deps=False \
 
 RUN mkdir -p "$(dirname ${PLANTUML_JAR})" \
   && curl -SL https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download -o "${PLANTUML_JAR}" \
-  && echo "PLANTUML_JAR=${PLANTUML_JAR}" >>/etc/environment
+  && echo "PLANTUML_JAR=${PLANTUML_JAR}" >> /etc/environment
