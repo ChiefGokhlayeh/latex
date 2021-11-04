@@ -49,6 +49,8 @@ jobs:
         run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/eps ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
       - name: Compile FontAwesome5 test document
         run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/fontawesome5 ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
+      - name: Compile GNUPlot test document
+        run: mkdir -p test/gnuplot/build && docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/gnuplot ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -jobname=build/main -pdf -interaction=nonstopmode -file-line-error main.tex
       - name: Compile PlantUML test document
         run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/plantuml ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=. -lualatex -interaction=nonstopmode -file-line-error main.tex
       - name: Compile PythonTeX test document

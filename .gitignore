@@ -126,6 +126,10 @@ acs-*.bib
 # gnuplottex
 *-gnuplottex-*
 
+# tikz plot
+*.gnuplot
+*.table
+
 # gregoriotex
 *.gaux
 *.gtex
