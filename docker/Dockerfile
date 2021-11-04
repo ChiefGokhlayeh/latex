@@ -1,4 +1,4 @@
-FROM fedora:34
+FROM fedora:35
 
 LABEL name="Gokhlayeh/LaTeX"
 LABEL version="v6"
