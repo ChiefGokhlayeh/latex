@@ -53,6 +53,8 @@ jobs:
         run: ln -sf test/gnuplot/.latexmkrc
       - name: Compile GNUPlot test document
         run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/gnuplot ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
+      - name: Compile pdf2svg test document
+        run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/pdf2svg ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=build -pdf -interaction=nonstopmode -file-line-error main.tex
       - name: Compile PlantUML test document
         run: docker run -v "$(pwd):/github/workspace" -w /github/workspace/test/plantuml ${{ env.DOCKERHUB_USERNAME }}/latex:testing latexmk -outdir=. -pdf -lualatex -interaction=nonstopmode -file-line-error main.tex
       - name: Compile PythonTeX test document

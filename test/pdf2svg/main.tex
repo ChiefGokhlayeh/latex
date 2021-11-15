@@ -1,0 +1,12 @@
+\documentclass[crop,tikz,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+
+\usepackage{lipsum}
+
+\begin{document}
+\begin{tikzpicture}
+    \draw (0,0) -- (10,10);
+    \draw (10,0) -- (0,10);
+    \draw [red] (5,0) -- (0,10);
+    \node at (5,5) {\lipsum[1][1]};
+\end{tikzpicture}
+\end{document}
