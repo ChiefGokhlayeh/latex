@@ -78,32 +78,32 @@ GNU Plot is a useful tool to quickly render 2D or even 3D graphs. This image com
 
 - `main.tex` - An example LaTeX document, showcasing how to render GNU Plot images.
 
-```latex
-\documentclass{scrartcl}
+  ```latex
+  \documentclass{scrartcl}
 
-\usepackage{tikz}
+  \usepackage{tikz}
 
-\begin{document}
+  \begin{document}
 
-Demonstrating gnuplot:
+  Demonstrating gnuplot:
 
-\begin{tikzpicture}
-    % On first build, Tikz will generate a *.gnuplot file with the given
-    % instructions. If the LaTeX engine is invoked with --shell-escape, Tikz
-    % will invoke gnuplot to produce a *.table file. On the next build, it will
-    % see the *.table file and render it accordingly.
-    %
-    % Note that in this example we use latexmk to convert *.gnuplot files to
-    % *.table. Thus the LaTeX engine does not need to be invoked with
-    % --shell-escape. Latexmk will also automatically invoke the second build,
-    % producing the desired PDF in one call.
-    %
-    % Check the Tikz and gnuplot manuals to continue from here.
-    \draw plot [id=mygraph] function {sin(x)};
-\end{tikzpicture}
+  \begin{tikzpicture}
+      % On first build, Tikz will generate a *.gnuplot file with the given
+      % instructions. If the LaTeX engine is invoked with --shell-escape, Tikz
+      % will invoke gnuplot to produce a *.table file. On the next build, it will
+      % see the *.table file and render it accordingly.
+      %
+      % Note that in this example we use latexmk to convert *.gnuplot files to
+      % *.table. Thus the LaTeX engine does not need to be invoked with
+      % --shell-escape. Latexmk will also automatically invoke the second build,
+      % producing the desired PDF in one call.
+      %
+      % Check the Tikz and gnuplot manuals to continue from here.
+      \draw plot [id=mygraph] function {sin(x)};
+  \end{tikzpicture}
 
-\end{document}
-```
+  \end{document}
+  ```
 
 ## Pull the Image Manually
 
