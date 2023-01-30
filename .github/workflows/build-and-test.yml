@@ -33,7 +33,7 @@ jobs:
       # build unstable image used for test suite
       #
       - name: Build testing image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -73,7 +73,7 @@ jobs:
       - name: Build and push unstable
         if: ${{ github.event_name == 'release' || (github.event_name == 'push' && github.ref == 'refs/heads/master') }}
         id: docker_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: ./docker
           file: ./docker/Dockerfile
@@ -89,7 +89,7 @@ jobs:
         run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
       - name: Build and push release
         if: ${{ github.event_name == 'release' }}
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: ./docker
           file: ./docker/Dockerfile
