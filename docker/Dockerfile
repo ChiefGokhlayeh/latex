@@ -1,7 +1,7 @@
 FROM fedora:38
 
 LABEL name="Gokhlayeh/LaTeX"
-LABEL version="v9"
+LABEL version="v10"
 LABEL description="LaTeX distribution with support for BibLaTeX and PythonTeX"
 LABEL maintainer="gokhlayeh"
 
