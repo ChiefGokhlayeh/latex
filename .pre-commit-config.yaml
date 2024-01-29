@@ -20,11 +20,6 @@ repos:
     rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
-        args:
-          - --config-precedence=file-override
-        additional_dependencies:
-          - prettier@2.4.1
-          - prettier-plugin-sh@v0.7.1
   - repo: https://github.com/Lucas-C/pre-commit-hooks-nodejs
     rev: v1.1.2
     hooks:

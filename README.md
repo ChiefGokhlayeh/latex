@@ -26,7 +26,7 @@ Alternatively paste the following lines to your `.vscode/settings.json`.
 {
   /* more settings go here */
   "latex-workshop.docker.enabled": true,
-  "latex-workshop.docker.image.latex": "gokhlayeh/latex"
+  "latex-workshop.docker.image.latex": "gokhlayeh/latex",
 }
 ```
 

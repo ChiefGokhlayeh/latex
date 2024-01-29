@@ -41,7 +41,7 @@ When using Visual Studio Code and LaTeX Workshop ensure your `.vscode/settings.j
   // requires LaTeX Workshop extension (james-yu.latex-workshop)
   "latex-workshop.docker.enabled": true,
   "latex-workshop.docker.image.latex": "gokhlayeh/latex", // >= v2
-  "latex-workshop.latex.outDir": "%DIR%/build" // separate build artifacts from LaTeX source
+  "latex-workshop.latex.outDir": "%DIR%/build", // separate build artifacts from LaTeX source
 }
 ```
 
