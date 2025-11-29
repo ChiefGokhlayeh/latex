@@ -12,7 +12,7 @@ RUN dnf install -y --setopt=install_weak_deps=False \
   gnuplot \
   graphviz \
   inkscape \
-  java-17-openjdk \
+  java-latest-openjdk \
   latexmk \
   make \
   pdf2svg \
